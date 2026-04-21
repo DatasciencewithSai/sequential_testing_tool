@@ -190,7 +190,23 @@ CONTINUOUS_COLS = [
     {"name": "Treatment — Cumulative Std", "id": "trt_std",   "type": "numeric"},
 ]
 
-BINARY_EMPTY     = [{"day": i, "ctrl_users": None, "ctrl_conv": None, "trt_users": None, "trt_conv": None} for i in range(1, 32)]
+# 10 days of realistic sample data: baseline ~10% CR, treatment ~12% CR, 500/day per variant
+_BINARY_SAMPLE = [
+    {"day": 1,  "ctrl_users": 500,  "ctrl_conv": 48,  "trt_users": 500,  "trt_conv": 57},
+    {"day": 2,  "ctrl_users": 1000, "ctrl_conv": 99,  "trt_users": 1000, "trt_conv": 118},
+    {"day": 3,  "ctrl_users": 1500, "ctrl_conv": 151, "trt_users": 1500, "trt_conv": 181},
+    {"day": 4,  "ctrl_users": 2000, "ctrl_conv": 198, "trt_users": 2000, "trt_conv": 244},
+    {"day": 5,  "ctrl_users": 2500, "ctrl_conv": 249, "trt_users": 2500, "trt_conv": 306},
+    {"day": 6,  "ctrl_users": 3000, "ctrl_conv": 301, "trt_users": 3000, "trt_conv": 369},
+    {"day": 7,  "ctrl_users": 3500, "ctrl_conv": 352, "trt_users": 3500, "trt_conv": 431},
+    {"day": 8,  "ctrl_users": 4000, "ctrl_conv": 403, "trt_users": 4000, "trt_conv": 493},
+    {"day": 9,  "ctrl_users": 4500, "ctrl_conv": 451, "trt_users": 4500, "trt_conv": 557},
+    {"day": 10, "ctrl_users": 5000, "ctrl_conv": 502, "trt_users": 5000, "trt_conv": 620},
+]
+BINARY_EMPTY = _BINARY_SAMPLE + [
+    {"day": i, "ctrl_users": None, "ctrl_conv": None, "trt_users": None, "trt_conv": None}
+    for i in range(11, 32)
+]
 CONTINUOUS_EMPTY = [{"day": i, "ctrl_n": None, "ctrl_mean": None, "ctrl_std": None, "trt_n": None, "trt_mean": None, "trt_std": None} for i in range(1, 32)]
 
 TABLE_STYLE = dict(
